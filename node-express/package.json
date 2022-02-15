@@ -1,0 +1,16 @@
+{
+  "name": "node-express",
+  "version": "1.0.0",
+  "description": "nodeJS with express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "author": "bakano98",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "morgan": "^1.10.0"
+  }
+}
