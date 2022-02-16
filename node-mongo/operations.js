@@ -1,45 +1,30 @@
 // encapsulates all CRUD operations
 const assert = require("assert");
 
+// looks much cleaner here too
 const insertDocument = (db, document, collection, callback) => {
   const collections = db.collection(collection);
   // perform operations on the collection!
-  collections.insertOne(document, (err, result) => {
-    assert.equal(err, null); // ensure no errors
-    console.log("Inserted ", result);
-
-    // simply gives the result as a callback, so we can access it as (result) outside!
-    callback(result);
-  });
+  // this returns a promise by default if no callback is assigned
+  return collections.insertOne(document);
 };
 
 const findDocuments = (db, collection, callback) => {
   const collections = db.collection(collection);
-  collections.find({}).toArray((err, docs) => {
-    assert.equal(err, null); // ensure no errors
-    callback(docs); // just give back docs to callback
-  });
+  return collections.find({}).toArray();
 };
 
 const removeDocument = (db, document, collection, callback) => {
   const collections = db.collection(collection);
   // find the first object that matches and delete it
-  collections.deleteOne(document, (err, result) => {
-    assert.equal(err, null); // ensure no errors
-    // note that document is a JSON object
-    console.log("Removed the document ", document, "successfully");
-    callback(result); // give back the result
-  });
+  collections.deleteOne(document);
 };
 
 const updateDocument = (db, document, update, collection, callback) => {
   const collections = db.collection(collection);
   // arg0: document, arg1: fields to update, arg2: null, arg3: callback
-  collections.updateOne(document, { $set: update }, null, (err, result) => {
-    assert.equal(err, null); // ensure no errors
-    console.log("Updated document with ", update);
-    callback(result);
-  });
+  // if no callback, by default returns a promise
+  return collections.updateOne(document, { $set: update }, null);
 };
 
 module.exports = {
