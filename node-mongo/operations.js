@@ -3,8 +3,17 @@ const assert = require("assert");
 
 // looks much cleaner here too
 const insertDocument = (db, document, collection, callback) => {
+  // declares the collection that we want to access
   const collections = db.collection(collection);
   // perform operations on the collection!
+  
+  
+  /* callback way of doing it: (not recommended honestly)
+  collections.insert(document, (err, result) => {
+    assert.equal(err, null);
+    console.log("inserted: " + result);
+    callback(result)
+  })*/
   // this returns a promise by default if no callback is assigned
   return collections.insertOne(document);
 };
