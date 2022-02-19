@@ -19,11 +19,10 @@ app.use(morgan("dev"));
 // tells app to use bodyParser for JSON files
 app.use(bodyParser.json());
 
-
 // Mounting endpoint, /dishes to dishRouter
-app.use('/dishes', dishRouter);
-app.use('/promotions', promoRouter);
-app.use('/leaders', leaderRouter);
+app.use("/dishes", dishRouter);
+app.use("/promotions", promoRouter);
+app.use("/leaders", leaderRouter);
 
 // setting up html files from public folder
 // express.static tells express to set up static files from __dirname/public
